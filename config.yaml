@@ -941,6 +941,15 @@ options:
       .
       Increasing this value will increase instance density on compute nodes
       with an increased risk of hypervisor storage becoming full.
+  packing-host-numa-cells-allocation-strategy:
+    type: boolean
+    default: true
+    description: |
+      Control how Nova places guest NUMA cells on host NUMA cells.
+      If true, pack guests onto the most-used cells. If false, spread guests
+      across cells with more free resources.
+      .
+      This option is supported by OpenStack Yoga and later.
   neutron-physnets:
     type: string
     default:
@@ -996,4 +1005,3 @@ options:
       can be a problem when resume-guests-state-on-host-boot is True. We
       use a custom default here and it can be set higher if not enough for
       nodes with very large numbers of vms.
-

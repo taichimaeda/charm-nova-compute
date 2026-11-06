@@ -1052,6 +1052,9 @@ class NovaComputePlacementContext(context.OSContextGenerator):
         ctxt['ram_allocation_ratio'] = config('ram-allocation-ratio')
         ctxt['disk_allocation_ratio'] = config('disk-allocation-ratio')
 
+        ctxt['packing_host_numa_cells_allocation_strategy'] = config(
+            'packing-host-numa-cells-allocation-strategy')
+
         if cmp_os_release >= 'stein':
             for ratio_config in ['initial_cpu_allocation_ratio',
                                  'initial_ram_allocation_ratio',

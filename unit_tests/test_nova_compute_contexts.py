@@ -1549,7 +1549,8 @@ class NovaComputePlacementContextTest(CharmTestCase):
              'disk_allocation_ratio': 16,
              'initial_cpu_allocation_ratio': None,
              'initial_ram_allocation_ratio': None,
-             'initial_disk_allocation_ratio': None}, ctxt())
+             'initial_disk_allocation_ratio': None,
+             'packing_host_numa_cells_allocation_strategy': True}, ctxt())
 
     def test_allocation_ratio_defaults_pre_stein(self):
         _allocation_ratios = {
@@ -1571,7 +1572,8 @@ class NovaComputePlacementContextTest(CharmTestCase):
              'disk_allocation_ratio': 32,
              'initial_cpu_allocation_ratio': None,
              'initial_ram_allocation_ratio': None,
-             'initial_disk_allocation_ratio': None}, ctxt())
+             'initial_disk_allocation_ratio': None,
+             'packing_host_numa_cells_allocation_strategy': True}, ctxt())
 
     def test_allocation_ratio_defaults(self):
         _allocation_ratios = {
@@ -1593,7 +1595,17 @@ class NovaComputePlacementContextTest(CharmTestCase):
              'disk_allocation_ratio': None,
              'initial_cpu_allocation_ratio': 8,
              'initial_ram_allocation_ratio': 24,
-             'initial_disk_allocation_ratio': 32}, ctxt())
+             'initial_disk_allocation_ratio': 32,
+             'packing_host_numa_cells_allocation_strategy': True}, ctxt())
+
+    def test_packing_host_numa_cells_allocation_strategy(self):
+        self.test_config.set(
+            'packing-host-numa-cells-allocation-strategy', False)
+
+        ctxt = context.NovaComputePlacementContext()
+
+        self.assertEqual(
+            False, ctxt()['packing_host_numa_cells_allocation_strategy'])
 
 
 class NovaComputeSWTPMContextTest(CharmTestCase):
