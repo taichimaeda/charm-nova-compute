@@ -974,6 +974,15 @@ options:
       .
       Increasing this value will increase instance density on compute nodes
       with an increased risk of hypervisor storage becoming full.
+  packing-host-numa-cells-allocation-strategy:
+    type: boolean
+    default: false
+    description: |
+      Control how Nova places guest NUMA cells on host NUMA cells.
+      If true, pack guests onto the most-used cells. If false, spread guests
+      across cells with more free resources.
+      .
+      This option is supported by OpenStack Yoga and later.
   neutron-physnets:
     type: string
     default:
